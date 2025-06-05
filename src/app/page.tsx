@@ -1,12 +1,20 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
 import { Type, Image as ImageIcon, Leaf } from "lucide-react";
 
 export default function HomePage() {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center selection:bg-primary/30">
-      {/* Header removed from here as it's already in layout.tsx */}
       <main className="w-full max-w-3xl mt-8">
         <Tabs defaultValue="text-to-art" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6 bg-secondary/50 p-1.5 rounded-lg">
@@ -28,7 +36,7 @@ export default function HomePage() {
       <footer className="py-8 mt-16 text-center text-muted-foreground">
         <p className="flex items-center justify-center gap-2">
           <Leaf size={16} className="text-accent" />
-          &copy; {new Date().getFullYear()} GhibliGenius. Crafted with magic & Google Gemini.
+          &copy; {currentYear || new Date().getFullYear()} GhibliGenius. Crafted with magic & Google Gemini.
         </p>
       </footer>
     </div>
