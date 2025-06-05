@@ -1,96 +1,95 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 60 56% 91%; /* Light desaturated beige #F5F5DC */
-    --foreground: 60 10% 10%; /* Darker, softer black for text */
+    --background: 260 100% 98%; /* Very light purple */
+    --foreground: 260 20% 20%; /* Dark purple for text */
 
-    --card: 60 56% 93%; /* Slightly lighter beige for cards */
-    --card-foreground: 60 10% 10%;
+    --card: 260 100% 96%; /* Slightly darker very light purple */
+    --card-foreground: 260 20% 20%;
 
-    --popover: 60 56% 93%;
-    --popover-foreground: 60 10% 10%;
+    --popover: 260 100% 96%;
+    --popover-foreground: 260 20% 20%;
 
-    --primary: 197 71% 73%; /* Soft sky blue #87CEEB */
-    --primary-foreground: 197 100% 10%; /* Dark blue for text on primary */
+    --primary: 290 90% 60%; /* Vibrant purple */
+    --primary-foreground: 260 100% 98%; /* Very light purple for text on primary */
 
-    --secondary: 60 50% 85%; /* A slightly darker beige for secondary elements */
-    --secondary-foreground: 60 10% 10%;
+    --secondary: 170 90% 50%; /* Vibrant teal */
+    --secondary-foreground: 260 20% 20%; /* Dark purple for text on secondary */
 
-    --muted: 60 50% 95%; /* Very light beige for muted backgrounds */
-    --muted-foreground: 60 20% 40%; /* Softer grey for muted text */
+    --muted: 260 100% 90%; /* Muted light purple */
+    --muted-foreground: 260 30% 50%; /* Greyish purple for muted text */
 
-    --accent: 120 61% 34%; /* Gentle forest green #228B22 */
-    --accent-foreground: 120 60% 95%; /* Light green/white for text on accent */
+    --accent: 40 90% 60%; /* Vibrant orange */
+    --accent-foreground: 260 20% 20%; /* Dark purple for text on accent */
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+ --destructive-foreground: 0 0% 98%;
 
-    --border: 60 30% 80%; /* Beige-toned border */
-    --input: 60 30% 80%; /* Beige-toned input border */
-    --ring: 197 71% 73%; /* Primary blue for rings */
+    --border: 260 50% 85%; /* Purple-toned border */
+    --input: 260 50% 85%; /* Purple-toned input border */
+    --ring: 290 90% 60%; /* Primary purple for rings */
 
-    --radius: 0.75rem; /* Softer rounded corners */
+    --radius: 0.5rem; /* Slightly less rounded corners */
 
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 260 100% 98%; /* Match background */
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 260 50% 85%; /* Match border */
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 260 20% 15%; /* Dark purple background */
+    --foreground: 260 100% 98%; /* Very light purple text */
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 260 20% 20%; /* Slightly lighter dark purple for cards */
+    --card-foreground: 260 100% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 260 20% 20%;
+    --popover-foreground: 260 100% 98%;
 
-    --primary: 197 71% 65%; /* Lighter blue for dark mode */
-    --primary-foreground: 197 90% 15%;
+    --primary: 290 90% 70%; /* Lighter vibrant purple for dark mode */
+    --primary-foreground: 260 20% 15%; /* Dark purple for text on primary in dark mode */
 
     --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+ --secondary-foreground: 210 40% 98%;
 
     --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+ --muted-foreground: 215 20% 65%;
 
-    --accent: 120 61% 45%; /* Lighter green for dark mode */
-    --accent-foreground: 120 20% 95%;
+    --accent: 40 90% 70%; /* Lighter vibrant orange for dark mode */
+    --accent-foreground: 260 20% 15%; /* Dark purple for text on accent in dark mode */
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 197 71% 65%; /* Primary blue for rings in dark mode */
+    --ring: 290 90% 70%; /* Primary purple for rings in dark mode */
 
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 197 71% 65%; /* Match primary */
-    --sidebar-primary-foreground: 197 90% 15%; /* Match primary-foreground */
-    --sidebar-accent: 120 61% 45%; /* Match accent */
-    --sidebar-accent-foreground: 120 20% 95%; /* Match accent-foreground */
+    --sidebar-primary: 290 90% 70%; /* Match primary */
+    --sidebar-primary-foreground: 260 20% 15%; /* Match primary-foreground */
+    --sidebar-accent: 40 90% 70%; /* Match accent */
+    --sidebar-accent-foreground: 260 20% 15%; /* Match accent-foreground */
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 197 71% 65%; /* Match ring */
   }
@@ -99,8 +98,14 @@
 @layer base {
   * {
     @apply border-border;
+ animation-duration: 0.3s;
+ animation-timing-function: ease-out;
+ transition-duration: 0.3s;
+ transition-timing-function: ease-out;
+    font-family: 'Roboto', sans-serif; /* Example modern font */
   }
   body {
     @apply bg-background text-foreground;
+ overflow-x: hidden; /* Prevent horizontal scroll */
   }
 }

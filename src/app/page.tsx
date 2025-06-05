@@ -1,5 +1,4 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Header from "@/components/Header";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
 import { Type, Image as ImageIcon, Leaf } from "lucide-react";
@@ -7,7 +6,7 @@ import { Type, Image as ImageIcon, Leaf } from "lucide-react";
 export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-8 min-h-screen flex flex-col items-center selection:bg-primary/30">
-      <Header />
+      {/* Header removed from here as it's already in layout.tsx */}
       <main className="w-full max-w-3xl mt-8">
         <Tabs defaultValue="text-to-art" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6 bg-secondary/50 p-1.5 rounded-lg">
