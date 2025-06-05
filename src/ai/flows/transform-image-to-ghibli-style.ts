@@ -1,3 +1,4 @@
+
 // src/ai/flows/transform-image-to-ghibli-style.ts
 'use server';
 
@@ -34,19 +35,7 @@ export async function transformImageToGhibliStyle(
   return transformImageToGhibliStyleFlow(input);
 }
 
-const transformImageToGhibliStylePrompt = ai.definePrompt({
-  name: 'transformImageToGhibliStylePrompt',
-  input: {schema: TransformImageToGhibliStyleInputSchema},
-  output: {schema: TransformImageToGhibliStyleOutputSchema},
-  prompt: [
-    {media: {url: '{{{photoDataUri}}}'}},
-    {text: 'Transform this image into Ghibli style.'},
-  ],
-  model: 'googleai/gemini-2.0-flash-exp',
-  config: {
-    responseModalities: ['TEXT', 'IMAGE'],
-  },
-});
+// The ai.definePrompt object is removed as the flow will call ai.generate directly.
 
 const transformImageToGhibliStyleFlow = ai.defineFlow(
   {
@@ -54,8 +43,22 @@ const transformImageToGhibliStyleFlow = ai.defineFlow(
     inputSchema: TransformImageToGhibliStyleInputSchema,
     outputSchema: TransformImageToGhibliStyleOutputSchema,
   },
-  async input => {
-    const {media} = await transformImageToGhibliStylePrompt(input);
-    return {transformedImage: media!.url!};
+  async (input: TransformImageToGhibliStyleInput) => {
+    const {media} = await ai.generate({
+      model: 'googleai/gemini-2.0-flash-exp',
+      prompt: [
+        {media: {url: input.photoDataUri}},
+        {text: 'Transform this image into Ghibli style.'},
+      ],
+      config: {
+        responseModalities: ['TEXT', 'IMAGE'],
+      },
+    });
+
+    if (!media || !media.url) {
+      throw new Error('Image generation failed: No media URL returned from the model.');
+    }
+    return {transformedImage: media.url};
   }
 );
+
