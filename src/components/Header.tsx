@@ -1,13 +1,7 @@
-import { Palette } from 'lucide-react';
+// This component is no longer used and can be safely deleted.
+// The header functionality has been integrated into src/app/layout.tsx and src/app/page.tsx.
+// Keeping the file for now to avoid breaking imports if any exist, but it should be removed.
 
-const Header = () => (
-  <header className="py-8 text-center">
-    <div className="flex items-center justify-center gap-3 mb-2">
-      <Palette size={40} className="text-primary animate-pulse" />
-      <h1 className="text-5xl font-headline font-bold text-primary">GhibliGenius</h1>
-    </div>
-    <p className="text-lg text-muted-foreground">Create enchanting Ghibli-style art from text or images.</p>
-  </header>
-);
+const Header = () => null; 
 
 export default Header;

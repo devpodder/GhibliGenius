@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['PT Sans', 'sans-serif'],
-        headline: ['PT Sans', 'sans-serif'],
+        headline: ['PT Sans', 'sans-serif'], // Can be different if needed
         code: ['monospace'],
       },
       colors: {
@@ -67,9 +67,11 @@ export default {
         },
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        lg: 'var(--radius)', // Typically 0.75rem or 1rem
+        md: 'calc(var(--radius) - 0.25rem)', // e.g., 0.5rem or 0.75rem
+        sm: 'calc(var(--radius) - 0.5rem)', // e.g., 0.25rem or 0.5rem
+        xl: 'calc(var(--radius) + 0.5rem)', // For larger rounding like in the reference
+        full: '9999px',
       },
       keyframes: {
         'accordion-down': {
@@ -93,6 +95,10 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      boxShadow: {
+        'xl': '0 10px 25px -5px rgba(0,0,0,0.07), 0 8px 10px -6px rgba(0,0,0,0.07)',
+        'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.04)',
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],

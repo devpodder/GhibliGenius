@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"; // Added Toaster
-import Header from '@/components/Header'; // Import Header component
+import { Toaster } from "@/components/ui/toaster";
+
 export const metadata: Metadata = {
-  title: 'GhibliGenius',
-  description: 'Generate and transform images into Ghibli-style art.',
+  title: 'GhibliGenius AI',
+  description: 'Transform your world into magic. Create enchanting Studio Ghibli-style artwork.',
 };
 
 export default function RootLayout({
@@ -21,8 +21,8 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow container mx-auto px-4 py-8"> {children}</main>
+          <div className="h-2.5 bg-accent w-full" /> {/* Gold top bar */}
+          <main className="flex-grow w-full"> {children}</main>
         </div>
         <Toaster />
       </body>

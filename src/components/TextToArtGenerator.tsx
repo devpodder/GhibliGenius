@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// Removed Card imports as styling is now handled by page.tsx
 import { generateGhibliArtFromText } from "@/ai/flows/generate-ghibli-art-from-text";
 import ArtDisplayCard from "./ArtDisplayCard";
 import { Wand2, Loader2 } from "lucide-react";
@@ -21,8 +21,8 @@ const TextToArtGenerator = () => {
     if (!prompt.trim()) {
       setError("Please enter a prompt.");
       toast({
-        title: "Uh oh!",
-        description: "Please enter a prompt to generate art.",
+        title: "Prompt is empty!",
+        description: "Please describe your magical scene.",
         variant: "destructive",
       });
       return;
@@ -55,7 +55,6 @@ const TextToArtGenerator = () => {
   const handleDownload = () => {
     if (!generatedImageUrl) return;
     
-    // For remote URLs that might need fetching (e.g. gs:// or temporary https)
     if (generatedImageUrl.startsWith('http') || generatedImageUrl.startsWith('gs')) {
         fetch(generatedImageUrl)
             .then(response => {
@@ -79,17 +78,16 @@ const TextToArtGenerator = () => {
             .catch(err => {
                 console.error("Download error:", err);
                 toast({ title: "Download Failed", description: "Could not download the image.", variant: "destructive" });
-                // Fallback for direct link if fetch fails (e.g. CORS)
                 const link = document.createElement('a');
                 link.href = generatedImageUrl;
                 const filename = prompt.substring(0, 30).replace(/\s+/g, '_').replace(/[^\w-]/g, '').toLowerCase() || 'ghibli_art';
                 link.download = `${filename}.png`;
-                link.target = "_blank"; // Open in new tab as fallback
+                link.target = "_blank"; 
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
             });
-    } else { // For data URIs or other direct links
+    } else { 
         const link = document.createElement('a');
         link.href = generatedImageUrl;
         const filename = prompt.substring(0, 30).replace(/\s+/g, '_').replace(/[^\w-]/g, '').toLowerCase() || 'ghibli_art';
@@ -102,41 +100,37 @@ const TextToArtGenerator = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <Card className="shadow-md border-border/70 bg-card/80 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="font-headline text-2xl text-primary flex items-center gap-2">
-            <Wand2 /> Describe Your Vision
-          </CardTitle>
-          <CardDescription>Enter a text prompt and let GhibliGenius create magical art for you. Be descriptive for best results!</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Textarea
-              placeholder="e.g., A serene meadow at dusk, fireflies dancing over a crystal clear pond, distant mountains under a starry sky, Ghibli style."
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              rows={4}
-              className="focus:ring-primary focus:border-primary text-base"
-              disabled={isLoading}
-            />
-            <Button type="submit" disabled={isLoading || !prompt.trim()} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-transform hover:scale-105">
-              {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Wand2 className="mr-2 h-5 w-5" />}
-              Generate Art
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="space-y-6">
+      <div>
+        <label htmlFor="text-prompt-area" className="block text-md font-semibold text-foreground mb-2">
+          Describe your magical scene
+        </label>
+        <Textarea
+          id="text-prompt-area"
+          placeholder="e.g., A serene forest clearing with glowing spirits floating among ancient trees, painted in the style of Studio Ghibli..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          rows={5}
+          className="focus:ring-primary focus:border-primary text-base bg-background/30 border-border rounded-lg p-3"
+          disabled={isLoading}
+        />
+      </div>
+      <Button type="button" onClick={handleSubmit} disabled={isLoading || !prompt.trim()} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-transform hover:scale-105 rounded-lg">
+        {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Wand2 className="mr-2 h-5 w-5" />}
+        Generate Art
+      </Button>
 
       {(generatedImageUrl || isLoading || error) && (
-        <ArtDisplayCard
-          title="Generated Ghibli Art"
-          imageUrl={generatedImageUrl}
-          isLoading={isLoading}
-          error={error}
-          onDownload={handleDownload}
-          placeholderText="Your Ghibli-style art will appear here once generated."
-        />
+        <div className="mt-8">
+          <ArtDisplayCard
+            title="Generated Ghibli Art"
+            imageUrl={generatedImageUrl}
+            isLoading={isLoading}
+            error={error}
+            onDownload={handleDownload}
+            placeholderText="Your Ghibli-style art will appear here once generated."
+          />
+        </div>
       )}
     </div>
   );
