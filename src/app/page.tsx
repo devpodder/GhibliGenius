@@ -1,11 +1,12 @@
+
 "use client";
 
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
-import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2 } from "lucide-react";
-import { Button } from "@/components/ui/button"; // Added for potential future use
+import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2, Heart } from "lucide-react";
+// Button import removed as it's not directly used here after previous changes. If needed, it's available in sub-components.
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState("text-prompt");
@@ -16,7 +17,7 @@ export default function HomePage() {
       <header className="w-full max-w-5xl text-center py-16 sm:py-24">
         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2 rounded-full mb-6 text-sm shadow-sm border border-primary/20">
           <Sparkles className="h-5 w-5" />
-          Studio Ghibli AI
+          Dev's Magic
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground">
           Transform Your World
@@ -34,7 +35,7 @@ export default function HomePage() {
       <main className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 pb-16">
         {/* Left Column: Generator/Transformer */}
         <div className="lg:col-span-2 bg-card p-6 sm:p-8 rounded-xl shadow-xl">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col h-full">
             <TabsList className="grid w-full grid-cols-2 mb-6 bg-secondary p-1.5 rounded-lg shadow-inner">
               <TabsTrigger 
                 value="text-prompt" 
@@ -49,10 +50,10 @@ export default function HomePage() {
                 <ImageIcon className="mr-2 h-5 w-5" /> Image Upload
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="text-prompt" className="focus-visible:ring-0 focus-visible:ring-offset-0">
+            <TabsContent value="text-prompt" className="focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow">
               <TextToArtGenerator />
             </TabsContent>
-            <TabsContent value="image-upload" className="focus-visible:ring-0 focus-visible:ring-offset-0">
+            <TabsContent value="image-upload" className="focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow">
               <ImageToArtTransformer />
             </TabsContent>
           </Tabs>
@@ -89,14 +90,22 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+            <div className="flex items-start gap-4">
+              <div className="bg-primary/10 p-3 rounded-full">
+                <Heart className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-1">Magical Results</h3>
+                <p className="text-sm text-muted-foreground">
+                  Each creation captures the whimsical spirit, soft lighting, and
+                  emotional depth of Ghibli animation.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
       
-      {/* Footer (Optional, can be added back if needed) */}
-      {/* <footer className="py-8 text-center text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} GhibliGenius AI. All rights reserved.</p>
-      </footer> */}
     </div>
   );
 }

@@ -1,8 +1,9 @@
+
 "use client";
 
 import NextImage from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"; // Keeping Card for structure, but styling will be minimal
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"; 
 import { Download, Loader2, AlertTriangle, ImageOff } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -67,44 +68,46 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
   }, [imageUrl]);
 
   return (
-    <Card className="w-full shadow-none border-none bg-transparent p-0">
+    <Card className="w-full shadow-none border-none bg-transparent p-0 flex flex-col flex-grow">
       <CardHeader className="p-0 mb-3">
         <CardTitle className="text-lg font-semibold text-foreground text-left">{title}</CardTitle>
       </CardHeader>
-      <CardContent className="flex justify-center items-center min-h-[250px] p-4 bg-background/30 rounded-lg border border-border">
+      <CardContent className="flex flex-col justify-center items-center min-h-[250px] p-0 sm:p-4 flex-grow"> {/* Removed background and border, adjusted padding */}
         {(isLoading || isImageLoading) && (
-          <div className="flex flex-col items-center text-muted-foreground">
+          <div className="flex flex-col items-center text-muted-foreground flex-grow justify-center">
             <Loader2 className="h-10 w-10 animate-spin text-primary mb-2" />
             <p>{isLoading ? 'Generating your masterpiece...' : 'Loading image...'}</p>
           </div>
         )}
         {error && !isLoading && !isImageLoading && (
-          <div className="flex flex-col items-center text-destructive">
+          <div className="flex flex-col items-center text-destructive flex-grow justify-center">
             <AlertTriangle className="h-10 w-10 mb-2" />
             <p className="text-center">Error: {error}</p>
           </div>
         )}
         {!isLoading && !isImageLoading && !error && imageUrl && imageDimensions && (
-          <NextImage
-            src={imageUrl}
-            alt={title}
-            width={imageDimensions.width}
-            height={imageDimensions.height}
-            className="rounded-md object-contain max-w-full max-h-[450px] shadow-sm transition-opacity duration-500 opacity-0 data-[loaded=true]:opacity-100"
-            data-ai-hint="art masterpiece"
-            onLoad={(e) => e.currentTarget.setAttribute('data-loaded', 'true')}
-            unoptimized={imageUrl.startsWith('data:')} 
-          />
+          <div className="w-full flex justify-center items-center flex-grow">
+            <NextImage
+              src={imageUrl}
+              alt={title}
+              width={imageDimensions.width}
+              height={imageDimensions.height}
+              className="rounded-md object-contain max-w-full max-h-[450px] shadow-sm transition-opacity duration-500 opacity-0 data-[loaded=true]:opacity-100"
+              data-ai-hint="art masterpiece"
+              onLoad={(e) => e.currentTarget.setAttribute('data-loaded', 'true')}
+              unoptimized={imageUrl.startsWith('data:')} 
+            />
+          </div>
         )}
         {!isLoading && !isImageLoading && !error && !imageUrl && showPlaceholder && (
-           <div className="flex flex-col items-center text-muted-foreground text-center p-6 border-2 border-dashed border-border/70 rounded-md w-full h-[250px] justify-center bg-background/50">
+           <div className="flex flex-col items-center text-muted-foreground text-center w-full justify-center flex-grow"> {/* Removed specific background and border from placeholder */}
             <ImageOff className="h-12 w-12 mb-3 text-gray-400" />
             <p>{placeholderText}</p>
           </div>
         )}
       </CardContent>
       {imageUrl && !isLoading && !isImageLoading && !error && onDownload && (
-        <CardFooter className="flex justify-start p-0 pt-4">
+        <CardFooter className="flex justify-start p-0 pt-4 mt-auto">
           <Button onClick={onDownload} className="bg-accent hover:bg-accent/90 text-accent-foreground transition-transform hover:scale-105 rounded-lg text-sm py-2.5 px-5">
             <Download className="mr-2 h-4 w-4" />
             Download Art

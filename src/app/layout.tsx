@@ -21,7 +21,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <div className="min-h-screen flex flex-col">
-          <div className="h-2.5 bg-accent w-full" /> {/* Gold top bar */}
+          {/* <div className="h-2.5 bg-accent w-full" /> Removed gold top bar */}
           <main className="flex-grow w-full"> {children}</main>
         </div>
         <Toaster />
