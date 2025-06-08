@@ -2,7 +2,6 @@
 "use client";
 
 import { useState, useEffect } from "react"; // Import useEffect
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
 import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2, Heart } from "lucide-react";
@@ -60,7 +59,7 @@ export default function HomePage() {
                   onChange={() => setIsImageUpload(!isImageUpload)}
                   aria-label="Toggle between Text-to-Art and Image-to-Art modes"
                 />
-                <div className="checkbox__container" onClick={() => setIsImageUpload(!isImageUpload)} role="switch" aria-checked={isImageUpload}>
+                <div className="checkbox__container" role="switch" aria-checked={isImageUpload}> {/* Removed onClick from here */}
                   <label htmlFor="input-toggle" className="label-for-toggle cursor-pointer">
                     <span className="ball arrow">
                       {isImageUpload ? (
