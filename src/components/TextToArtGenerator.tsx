@@ -117,7 +117,7 @@ const TextToArtGenerator = () => {
       </div>
       <Button type="button" onClick={handleSubmit} disabled={isLoading || !prompt.trim()} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-transform hover:scale-105 rounded-lg">
         {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Wand2 className="mr-2 h-5 w-5" />}
-        Generate Art
+        Generate Ghibli Art
       </Button>
 
       {(generatedImageUrl || isLoading || error) && (
