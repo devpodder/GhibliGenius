@@ -1,14 +1,14 @@
 
 "use client";
 
-import { useState, useEffect } from "react"; 
-import NextImage from "next/image"; // Import NextImage
+import { useState, useEffect } from "react";
+import NextImage from "next/image";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
-import { Sparkles, Edit3, Image as ImageIconLucide, PencilLine, ImageUp, Wand2, Heart, Camera } from "lucide-react"; // Renamed Image to ImageIconLucide
+import { Sparkles, Edit3, Image as ImageIconLucide, PencilLine, ImageUp, Wand2, Heart, Camera } from "lucide-react";
 
 export default function HomePage() {
-  const [isImageUpload, setIsImageUpload] = useState(false); 
+  const [isImageUpload, setIsImageUpload] = useState(false);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
-      <header className="w-full max-w-5xl text-center py-16 sm:py-24 group"> {/* Added group class here */}
+      <header className="w-full max-w-5xl text-center py-16 sm:py-24 group">
         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2 rounded-full mb-6 text-sm shadow-sm border border-primary/20">
           <Sparkles className="h-5 w-5" />
           Dev's Magic
@@ -42,19 +42,19 @@ export default function HomePage() {
           {/* New Toggle Switch Section with Labels */}
           <div className="mb-8 flex flex-col items-center">
             <div className="flex items-center space-x-4">
-              <span 
+              <span
                 className={`text-lg font-semibold transition-all duration-200 ease-out cursor-pointer ${!isImageUpload ? 'text-primary scale-105' : 'text-muted-foreground hover:text-foreground'}`}
                 onClick={() => setIsImageUpload(false)}
               >
                 Text-to-Art
               </span>
-              
-              <div className="relative"> {/* Container for the actual toggle mechanics */}
+
+              <div className="relative">
                 <input
                   type="checkbox"
                   name="checkbox"
                   id="input-toggle"
-                  className="input-toggle" 
+                  className="input-toggle"
                   checked={isImageUpload}
                   onChange={() => setIsImageUpload(!isImageUpload)}
                   aria-label="Toggle between Text-to-Art and Image-to-Art modes"
@@ -72,7 +72,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <span 
+              <span
                 className={`text-lg font-semibold transition-all duration-200 ease-out cursor-pointer ${isImageUpload ? 'text-primary scale-105' : 'text-muted-foreground hover:text-foreground'}`}
                 onClick={() => setIsImageUpload(true)}
               >
@@ -85,17 +85,17 @@ export default function HomePage() {
           </div>
 
           {/* Conditionally render components based on toggle state */}
-          <div className="w-full"> 
+          <div className="w-full">
             {isImageUpload ? (
               <ImageToArtTransformer />
             ) : (
               <TextToArtGenerator />
             )}
-          </div> 
-        </div> 
-      
+          </div>
+        </div>
+
         {/* Right Column: How the Magic Works */}
-        <div className="bg-card p-6 sm:p-8 rounded-xl shadow-xl lg:mt-[calc(2.25rem+1.5rem+1.5rem+2rem)]"> {/* Adjusted margin to align better with new toggle height */}
+        <div className="bg-card p-6 sm:p-8 rounded-xl shadow-xl lg:mt-[calc(2.25rem+1.5rem+1.5rem+2rem)]">
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
             <Wand2 className="h-7 w-7 text-accent" />
             How the Magic Works
@@ -153,43 +153,43 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
           {/* Image 1 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
-            <NextImage 
-              src="https://placehold.co/600x400.png" 
-              alt="Ghibli-style enchanting forest" 
-              width={600} 
-              height={400} 
-              className="rounded-lg object-cover aspect-[3/2] w-full" 
-              data-ai-hint="Ghibli forest" 
+            <NextImage
+              src="/images/art1.png"
+              alt="Ghibli-style enchanting forest"
+              width={600}
+              height={400}
+              className="rounded-lg object-cover aspect-[3/2] w-full"
+              data-ai-hint="Ghibli forest"
             />
              <p className="text-sm text-muted-foreground mt-2 text-center">Enchanting Forest Path</p>
           </div>
           {/* Image 2 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
-            <NextImage 
-              src="https://placehold.co/600x400.png" 
-              alt="Ghibli-style whimsical character" 
-              width={600} 
-              height={400} 
-              className="rounded-lg object-cover aspect-[3/2] w-full" 
-              data-ai-hint="Ghibli character" 
+            <NextImage
+              src="/images/art2.png"
+              alt="Ghibli-style whimsical character"
+              width={600}
+              height={400}
+              className="rounded-lg object-cover aspect-[3/2] w-full"
+              data-ai-hint="Ghibli character"
             />
             <p className="text-sm text-muted-foreground mt-2 text-center">Whimsical Sky Guardian</p>
           </div>
           {/* Image 3 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
-            <NextImage 
-              src="https://placehold.co/600x400.png" 
-              alt="Ghibli-style cozy cottage" 
-              width={600} 
-              height={400} 
-              className="rounded-lg object-cover aspect-[3/2] w-full" 
+            <NextImage
+              src="/images/art3.png"
+              alt="Ghibli-style cozy cottage"
+              width={600}
+              height={400}
+              className="rounded-lg object-cover aspect-[3/2] w-full"
               data-ai-hint="Ghibli cottage"
             />
              <p className="text-sm text-muted-foreground mt-2 text-center">Cozy Riverside Cottage</p>
           </div>
         </div>
       </section>
-      
+
       <footer className="w-full max-w-5xl text-center py-8 mt-auto">
         <p className="text-sm text-muted-foreground">
  &copy; {currentYear} Dev's Magic. Crafted with Magic by Debarshi.
@@ -199,3 +199,4 @@ export default function HomePage() {
   );
 }
 
+    
