@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState } from "react"; // Import useState
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
@@ -9,8 +9,8 @@ import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2, Heart 
 // Button import removed as it's not directly used here after previous changes. If needed, it's available in sub-components.
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState("text-prompt");
-
+  const [activeTab, setActiveTab] = useState("text-prompt"); // Keep this state if you decide to revert later
+  const [isImageUpload, setIsImageUpload] = useState(false); // State for the new toggle
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -34,31 +34,38 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 pb-16">
         {/* Left Column: Generator/Transformer */}
-        <div className="lg:col-span-2 bg-card p-6 sm:p-8 rounded-xl shadow-xl">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col h-full">
-            <TabsList className="grid w-full grid-cols-2 mb-6 bg-secondary p-1.5 rounded-lg shadow-inner">
-              <TabsTrigger 
-                value="text-prompt" 
-                className="py-3 text-sm sm:text-base data-[state=active]:bg-card data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300 rounded-md"
-              >
-                <Edit3 className="mr-2 h-5 w-5" /> Text Prompt
-              </TabsTrigger>
-              <TabsTrigger 
-                value="image-upload" 
-                className="py-3 text-sm sm:text-base data-[state=active]:bg-card data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300 rounded-md"
-              >
-                <ImageIcon className="mr-2 h-5 w-5" /> Image Upload
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="text-prompt" className="focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow">
-              <TextToArtGenerator />
-            </TabsContent>
-            <TabsContent value="image-upload" className="focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow">
-              <ImageToArtTransformer />
-            </TabsContent>
-          </Tabs>
-        </div>
+        <div className="lg:col-span-2 bg-card p-6 sm:p-8 rounded-xl shadow-xl flex flex-col items-center"> {/* Left Column Container */}
+          {/* New Toggle Switch HTML */}
+          <div className="mb-6"> {/* Toggle Switch Div */}
+            <input
+              type="checkbox"
+              name="checkbox"
+              id="input-toggle"
+              className="input-toggle" // Use className for React
+              onChange={() => setIsImageUpload(!isImageUpload)} // Add onChange handler
+            />
+            <div className="checkbox__container">
+              <label htmlFor="input-toggle" className="label-for-toggle"> {/* Changed 'for' to 'htmlFor' for React */}
+                <span className="ball arrow"> {/* Changed 'class' to 'className' for React */}
+                  {/* You might want to change this icon to indicate the current mode (Text/Image) */}
+                  <i className="fas fa-arrow-right"></i> {/* Changed 'class' to 'className' for React */}
+                </span>
+              </label>
+            </div>
+          </div>
 
+          {/* Conditionally render components based on toggle state */}
+          {/* Wrapped components in a div to maintain layout consistency */}
+          <div className="w-full"> {/* Conditional Render Wrapper */}
+            {isImageUpload ? (
+              <ImageToArtTransformer />
+            ) : (
+              <TextToArtGenerator />
+            )}
+          </div> {/* Closes Conditional Render Wrapper */}
+          {/* Removed redundant div block that contained commented-out Tabs */}
+        </div> {/* Closes Left Column Container */}
+      
         {/* Right Column: How the Magic Works */}
         <div className="bg-card p-6 sm:p-8 rounded-xl shadow-xl lg:mt-[calc(2.25rem+1.5rem+1.5rem)]"> {/* Align with tabs visually a bit */}
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">

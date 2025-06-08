@@ -111,3 +111,72 @@
     overflow-x: hidden; /* Prevent horizontal scroll */
   }
 }
+
+/* --- New Toggle Styles --- */
+/* Keeping only toggle-specific styles */
+
+
+[type="checkbox"] {
+    appearance: none;
+    display: none;
+}
+
+.checkbox__container {
+    scale: 1.325;
+    display: grid;
+    inline-size: var(--container);
+    height: var(--height); /* Changed from block-size to height */
+    border-radius: 100vh;
+ background: linear-gradient(45deg, hsl(39, 100%, 80%), hsl(300, 47%, 85%)); /* Kept background for toggle look */
+    position: relative;
+    box-shadow: 0px 1.9px 3.2px rgba(0, 0, 0, 0.25);
+    outline: 1px solid hsl(0, 0%, 60%, 0.2);
+}
+
+.label-for-toggle {
+    cursor: pointer;
+    isolation: isolate;
+    display: grid;
+    place-content: center start;
+    width: inherit;
+    border-radius: inherit;
+    border: 16px solid hsl(200, 0%, 100%, 0.825); /* Kept border for toggle look */
+    box-shadow: 0 2px 2px 1px #0003 inset, inset 0 -1px 1.5px 1px #fff7;
+}
+
+.ball {
+    place-self: center start;
+    position: absolute;
+    left: 0.5rem;
+    mix-blend-mode: color;
+    display: grid;
+    place-content: center;
+    width: var(--ball);
+    aspect-ratio: 1;
+ background: linear-gradient(135deg, #3ddbd9, #8da2ec, #fe95ff); /* Kept background for ball look */
+    border-radius: 50%;
+    transition: transform 500ms cubic-bezier(0.4, 0.47, 0.66, 0.86);
+    box-shadow: 0 0 0.75rem 0 #0004;
+}
+
+.ball i {
+    font-size: 2.5em;
+    color: #fff;
+    /* Removed -webkit-text-stroke as it might not be needed with current font/icons */
+    -webkit-text-stroke: 1px #0006;
+}
+
+:checked ~ .checkbox__container .ball {
+    transform: translateX(calc(var(--container) - var(--ball) - 1rem))
+        rotate(540deg);
+}
+
+/* Re-added necessary CSS variables for the toggle if not globally defined elsewhere */
+:root {
+ --container: 16rem; /* Add if not already defined for your layout */
+ --height: 5.125rem; /* Add if not already defined for your layout */
+    --ball: 4.25rem; /* Add if not already defined for your layout */
+}
+
+
+/* --- End of New Toggle Styles --- */
