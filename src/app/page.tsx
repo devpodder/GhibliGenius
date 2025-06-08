@@ -1,16 +1,21 @@
 
 "use client";
 
-import { useState } from "react"; // Import useState
+import { useState, useEffect } from "react"; // Import useEffect
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
 import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2, Heart } from "lucide-react";
-// Button import removed as it's not directly used here after previous changes. If needed, it's available in sub-components.
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState("text-prompt"); // Keep this state if you decide to revert later
-  const [isImageUpload, setIsImageUpload] = useState(false); // State for the new toggle
+  const [activeTab, setActiveTab] = useState("text-prompt"); 
+  const [isImageUpload, setIsImageUpload] = useState(false); 
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -34,40 +39,64 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 pb-16">
         {/* Left Column: Generator/Transformer */}
-        <div className="lg:col-span-2 bg-card p-6 sm:p-8 rounded-xl shadow-xl flex flex-col items-center"> {/* Left Column Container */}
-          {/* New Toggle Switch HTML */}
-          <div className="mb-6"> {/* Toggle Switch Div */}
-            <input
-              type="checkbox"
-              name="checkbox"
-              id="input-toggle"
-              className="input-toggle" // Use className for React
-              onChange={() => setIsImageUpload(!isImageUpload)} // Add onChange handler
-            />
-            <div className="checkbox__container">
-              <label htmlFor="input-toggle" className="label-for-toggle"> {/* Changed 'for' to 'htmlFor' for React */}
-                <span className="ball arrow"> {/* Changed 'class' to 'className' for React */}
-                  {/* You might want to change this icon to indicate the current mode (Text/Image) */}
-                  <i className="fas fa-arrow-right"></i> {/* Changed 'class' to 'className' for React */}
-                </span>
-              </label>
+        <div className="lg:col-span-2 bg-card p-6 sm:p-8 rounded-xl shadow-xl flex flex-col items-center">
+          {/* New Toggle Switch Section with Labels */}
+          <div className="mb-8 flex flex-col items-center">
+            <div className="flex items-center space-x-4">
+              <span 
+                className={`text-lg font-semibold transition-all duration-200 ease-out cursor-pointer ${!isImageUpload ? 'text-primary scale-105' : 'text-muted-foreground hover:text-foreground'}`}
+                onClick={() => setIsImageUpload(false)}
+              >
+                Text-to-Art
+              </span>
+              
+              <div className="relative"> {/* Container for the actual toggle mechanics */}
+                <input
+                  type="checkbox"
+                  name="checkbox"
+                  id="input-toggle"
+                  className="input-toggle" 
+                  checked={isImageUpload}
+                  onChange={() => setIsImageUpload(!isImageUpload)}
+                  aria-label="Toggle between Text-to-Art and Image-to-Art modes"
+                />
+                <div className="checkbox__container" onClick={() => setIsImageUpload(!isImageUpload)} role="switch" aria-checked={isImageUpload}>
+                  <label htmlFor="input-toggle" className="label-for-toggle cursor-pointer">
+                    <span className="ball arrow">
+                      {isImageUpload ? (
+                        <ImageIcon className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
+                      ) : (
+                        <PencilLine className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
+                      )}
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <span 
+                className={`text-lg font-semibold transition-all duration-200 ease-out cursor-pointer ${isImageUpload ? 'text-primary scale-105' : 'text-muted-foreground hover:text-foreground'}`}
+                onClick={() => setIsImageUpload(true)}
+              >
+                Image-to-Art
+              </span>
             </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Select a mode or click the switch to toggle.
+            </p>
           </div>
 
           {/* Conditionally render components based on toggle state */}
-          {/* Wrapped components in a div to maintain layout consistency */}
-          <div className="w-full"> {/* Conditional Render Wrapper */}
+          <div className="w-full"> 
             {isImageUpload ? (
               <ImageToArtTransformer />
             ) : (
               <TextToArtGenerator />
             )}
-          </div> {/* Closes Conditional Render Wrapper */}
-          {/* Removed redundant div block that contained commented-out Tabs */}
-        </div> {/* Closes Left Column Container */}
+          </div> 
+        </div> 
       
         {/* Right Column: How the Magic Works */}
-        <div className="bg-card p-6 sm:p-8 rounded-xl shadow-xl lg:mt-[calc(2.25rem+1.5rem+1.5rem)]"> {/* Align with tabs visually a bit */}
+        <div className="bg-card p-6 sm:p-8 rounded-xl shadow-xl lg:mt-[calc(2.25rem+1.5rem+1.5rem+2rem)]"> {/* Adjusted margin to align better with new toggle height */}
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
             <Wand2 className="h-7 w-7 text-accent" />
             How the Magic Works
@@ -113,6 +142,11 @@ export default function HomePage() {
         </div>
       </main>
       
+      <footer className="w-full max-w-5xl text-center py-8 mt-auto">
+        <p className="text-sm text-muted-foreground">
+          &copy; {currentYear} GhibliGenius. Crafted with magic & Google Gemini.
+        </p>
+      </footer>
     </div>
   );
 }
