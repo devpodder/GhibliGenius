@@ -1,10 +1,11 @@
 
 "use client";
 
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState, useEffect } from "react"; 
+import NextImage from "next/image"; // Import NextImage
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
-import { Sparkles, Edit3, Image as ImageIcon, PencilLine, ImageUp, Wand2, Heart } from "lucide-react";
+import { Sparkles, Edit3, Image as ImageIconLucide, PencilLine, ImageUp, Wand2, Heart, Camera } from "lucide-react"; // Renamed Image to ImageIconLucide
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState("text-prompt"); 
@@ -63,7 +64,7 @@ export default function HomePage() {
                   <label htmlFor="input-toggle" className="label-for-toggle cursor-pointer">
                     <span className="ball arrow">
                       {isImageUpload ? (
-                        <ImageIcon className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
+                        <ImageIconLucide className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
                       ) : (
                         <PencilLine className="h-6 w-6 sm:h-7 sm:w-7 text-white" strokeWidth={2.5} />
                       )}
@@ -140,6 +141,55 @@ export default function HomePage() {
           </div>
         </div>
       </main>
+
+      {/* Inspiration Gallery Section */}
+      <section className="w-full max-w-6xl mx-auto py-12 sm:py-16">
+        <h2 className="text-3xl font-bold text-foreground text-center mb-4 flex items-center justify-center gap-2">
+          <Camera className="h-8 w-8 text-accent" />
+          Gallery of Magic
+        </h2>
+        <p className="text-md text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+          See what wonders you can create. Here are a few examples crafted with GhibliGenius AI:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Image 1 */}
+          <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
+            <NextImage 
+              src="https://placehold.co/600x400.png" 
+              alt="Ghibli-style enchanting forest" 
+              width={600} 
+              height={400} 
+              className="rounded-lg object-cover aspect-[3/2] w-full" 
+              data-ai-hint="Ghibli forest" 
+            />
+             <p className="text-sm text-muted-foreground mt-2 text-center">Enchanting Forest Path</p>
+          </div>
+          {/* Image 2 */}
+          <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
+            <NextImage 
+              src="https://placehold.co/600x400.png" 
+              alt="Ghibli-style whimsical character" 
+              width={600} 
+              height={400} 
+              className="rounded-lg object-cover aspect-[3/2] w-full" 
+              data-ai-hint="Ghibli character" 
+            />
+            <p className="text-sm text-muted-foreground mt-2 text-center">Whimsical Sky Guardian</p>
+          </div>
+          {/* Image 3 */}
+          <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
+            <NextImage 
+              src="https://placehold.co/600x400.png" 
+              alt="Ghibli-style cozy cottage" 
+              width={600} 
+              height={400} 
+              className="rounded-lg object-cover aspect-[3/2] w-full" 
+              data-ai-hint="Ghibli cottage"
+            />
+             <p className="text-sm text-muted-foreground mt-2 text-center">Cozy Riverside Cottage</p>
+          </div>
+        </div>
+      </section>
       
       <footer className="w-full max-w-5xl text-center py-8 mt-auto">
         <p className="text-sm text-muted-foreground">
