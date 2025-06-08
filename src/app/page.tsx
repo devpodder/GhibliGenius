@@ -15,6 +15,11 @@ export default function HomePage() {
     setCurrentYear(new Date().getFullYear());
   }, []);
 
+  // Direct links for Google Drive images
+  const art1Url = "https://drive.google.com/uc?export=view&id=1YF_1WWGqzPfZWVjMyCStlV8rWnTdrT3G";
+  const art2Url = "https://drive.google.com/uc?export=view&id=1WChDjecHiGbsLMgMzonPaxgNyl23yF3O";
+  const art3Url = "https://drive.google.com/uc?export=view&id=1vsMXM-HIoqCp4Iz80-c1B6QutOppNxxg";
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -154,7 +159,7 @@ export default function HomePage() {
           {/* Image 1 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
             <NextImage
-              src="/images/art1.png"
+              src={art1Url}
               alt="Ghibli-style enchanting forest"
               width={600}
               height={400}
@@ -166,7 +171,7 @@ export default function HomePage() {
           {/* Image 2 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
             <NextImage
-              src="/images/art2.png"
+              src={art2Url}
               alt="Ghibli-style whimsical character"
               width={600}
               height={400}
@@ -178,7 +183,7 @@ export default function HomePage() {
           {/* Image 3 */}
           <div className="bg-card p-3 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-out transform hover:-translate-y-1">
             <NextImage
-              src="/images/art3.png"
+              src={art3Url}
               alt="Ghibli-style cozy cottage"
               width={600}
               height={400}
@@ -198,5 +203,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
