@@ -18,15 +18,15 @@ export default function HomePage() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
-      <header className="w-full max-w-5xl text-center py-16 sm:py-24">
+      <header className="w-full max-w-5xl text-center py-16 sm:py-24 group"> {/* Added group class here */}
         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2 rounded-full mb-6 text-sm shadow-sm border border-primary/20">
           <Sparkles className="h-5 w-5" />
           Dev's Magic
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-[0_0_8px_hsl(var(--accent))]">
           Transform Your World
         </h1>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-6 transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-[0_0_8px_hsl(var(--accent))]">
           Into Magic
         </h1>
         <p className="text-md sm:text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -59,7 +59,7 @@ export default function HomePage() {
                   onChange={() => setIsImageUpload(!isImageUpload)}
                   aria-label="Toggle between Text-to-Art and Image-to-Art modes"
                 />
-                <div className="checkbox__container" role="switch" aria-checked={isImageUpload}> {/* Removed onClick from here */}
+                <div className="checkbox__container" role="switch" aria-checked={isImageUpload}>
                   <label htmlFor="input-toggle" className="label-for-toggle cursor-pointer">
                     <span className="ball arrow">
                       {isImageUpload ? (
@@ -143,9 +143,10 @@ export default function HomePage() {
       
       <footer className="w-full max-w-5xl text-center py-8 mt-auto">
         <p className="text-sm text-muted-foreground">
-          &copy; {currentYear} GhibliGenius. Crafted with magic & Google Gemini.
+ &copy; {currentYear} Dev's Magic. Crafted with Magic by Debarshi.
         </p>
       </footer>
     </div>
   );
 }
+
