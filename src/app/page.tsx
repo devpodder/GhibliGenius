@@ -23,10 +23,10 @@ export default function HomePage() {
           <Sparkles className="h-5 w-5" />
           Dev's Magic
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-[0_0_8px_hsl(var(--accent))]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground transition-all duration-300 ease-out group-hover:text-primary group-hover:drop-shadow-[0_0_8px_hsl(var(--primary))]">
           Transform Your World
         </h1>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-6 transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-[0_0_8px_hsl(var(--accent))]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-6 transition-all duration-300 ease-out group-hover:text-primary group-hover:drop-shadow-[0_0_8px_hsl(var(--primary))]">
           Into Magic
         </h1>
         <p className="text-md sm:text-lg text-muted-foreground max-w-2xl mx-auto">
