@@ -8,7 +8,6 @@ import ImageToArtTransformer from "@/components/ImageToArtTransformer";
 import { Sparkles, Edit3, Image as ImageIconLucide, PencilLine, ImageUp, Wand2, Heart, Camera } from "lucide-react"; // Renamed Image to ImageIconLucide
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState("text-prompt"); 
   const [isImageUpload, setIsImageUpload] = useState(false); 
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -149,7 +148,7 @@ export default function HomePage() {
           Gallery of Magic
         </h2>
         <p className="text-md text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
-          See what wonders you can create. Here are a few examples crafted with GhibliGenius AI:
+          See what wonders you can create. Here are a few examples crafted with Dev's Magic AI:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
           {/* Image 1 */}
