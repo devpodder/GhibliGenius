@@ -53,7 +53,7 @@ export default function HomePage() {
   const art3Url = "https://drive.google.com/uc?export=view&id=1vsMXM-HIoqCp4Iz80-c1B6QutOppNxxg";
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
+    <div className="w-full min-h-screen flex flex-col items-center selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
       <MagicEffects />
       {/* Hero Section */}
       <header className="w-full max-w-5xl text-center py-16 sm:py-24 group">
