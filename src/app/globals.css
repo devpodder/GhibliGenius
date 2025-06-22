@@ -109,11 +109,11 @@
 
 /* --- Magic Effects --- */
 @keyframes float {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
   25% { transform: translateY(-20px) translateX(15px) scale(1.1); }
-  50% { transform: translateY(10px) translateX(-20px) scale(1); opacity: 0.8; }
+  50% { transform: translateY(10px) translateX(-20px) scale(1); opacity: 1; }
   75% { transform: translateY(-15px) translateX(10px) scale(0.9); }
-  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
 }
 
 @keyframes sparkle-trail {
@@ -133,8 +133,8 @@
 .petal {
   position: absolute;
   border-radius: 50% 0; /* Creates a teardrop/petal shape */
-  background-color: hsl(var(--primary) / 0.3); /* Use primary color for better contrast */
-  box-shadow: 0 0 8px 1px hsl(var(--primary) / 0.4); /* Use primary color for glow */
+  background-color: hsl(145 60% 25% / 0.7); /* Dark green with high opacity */
+  box-shadow: 0 0 8px 2px hsl(145 60% 25% / 0.5); /* Dark green glow */
   animation: float infinite ease-in-out;
   will-change: transform, opacity;
 }
