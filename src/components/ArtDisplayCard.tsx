@@ -92,7 +92,7 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
               alt={title}
               width={imageDimensions.width}
               height={imageDimensions.height}
-              className="rounded-md object-contain max-w-full max-h-[450px] shadow-sm transition-opacity duration-500 opacity-0 data-[loaded=true]:opacity-100"
+              className="rounded-md object-contain max-w-full max-h-[450px] shadow-sm transition-all duration-500 ease-in-out opacity-0 scale-95 data-[loaded=true]:opacity-100 data-[loaded=true]:scale-100"
               data-ai-hint="art masterpiece"
               onLoad={(e) => e.currentTarget.setAttribute('data-loaded', 'true')}
               unoptimized={imageUrl.startsWith('data:')} 
