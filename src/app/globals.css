@@ -133,8 +133,8 @@
 .petal {
   position: absolute;
   border-radius: 50% 0; /* Creates a teardrop/petal shape */
-  background-color: hsl(var(--accent) / 0.25); /* Slightly more visible accent color */
-  box-shadow: 0 0 8px 1px hsl(var(--accent) / 0.3); /* Slightly stronger glow */
+  background-color: hsl(var(--primary) / 0.3); /* Use primary color for better contrast */
+  box-shadow: 0 0 8px 1px hsl(var(--primary) / 0.4); /* Use primary color for glow */
   animation: float infinite ease-in-out;
   will-change: transform, opacity;
 }
