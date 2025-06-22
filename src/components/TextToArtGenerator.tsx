@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -115,7 +116,7 @@ const TextToArtGenerator = () => {
           disabled={isLoading}
         />
       </div>
-      <Button type="button" onClick={handleSubmit} disabled={isLoading || !prompt.trim()} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-transform hover:scale-105 rounded-lg">
+      <Button type="button" onClick={handleSubmit} disabled={isLoading || !prompt.trim()} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-all duration-300 ease-out hover:-translate-y-px hover:shadow-glow-primary rounded-lg">
         {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Wand2 className="mr-2 h-5 w-5" />}
         Generate Ghibli Art
       </Button>

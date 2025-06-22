@@ -160,7 +160,7 @@ const ImageToArtTransformer = () => {
               if (!isLoading) handleChooseImageClick();
             }}
             disabled={isLoading}
-            className="text-primary border-primary hover:bg-primary/10 hover:text-primary"
+            className="text-primary border-primary hover:bg-primary/10 hover:text-primary transition-transform hover:-translate-y-px"
           >
             Choose Image
           </Button>
@@ -190,7 +190,7 @@ const ImageToArtTransformer = () => {
         type="button" 
         onClick={handleSubmit} 
         disabled={isLoading || !uploadedImageFile} 
-        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-transform hover:scale-105 rounded-lg"
+        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3 transition-all duration-300 ease-out hover:-translate-y-px hover:shadow-glow-primary rounded-lg"
       >
         {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Wand2 className="mr-2 h-5 w-5" />}
         Generate Ghibli Art

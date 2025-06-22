@@ -108,7 +108,7 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
       </CardContent>
       {imageUrl && !isLoading && !isImageLoading && !error && onDownload && (
         <CardFooter className="flex justify-start p-0 pt-4 mt-auto">
-          <Button onClick={onDownload} className="bg-accent hover:bg-accent/90 text-accent-foreground transition-transform hover:scale-105 rounded-lg text-sm py-2.5 px-5">
+          <Button onClick={onDownload} className="bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 ease-out hover:-translate-y-px hover:shadow-glow-accent rounded-lg text-sm py-2.5 px-5">
             <Download className="mr-2 h-4 w-4" />
             Download Art
           </Button>
