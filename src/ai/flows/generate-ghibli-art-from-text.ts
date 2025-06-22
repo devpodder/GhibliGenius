@@ -49,7 +49,7 @@ const generateGhibliArtFromTextFlow = ai.defineFlow(
   },
   async input => {
     const {media} = await ai.generate({
-      model: 'googleai/gemini-2.0-flash-exp',
+      model: 'googleai/gemini-2.0-flash-preview-image-generation',
       prompt: input.prompt + ' in the style of Studio Ghibli',
       config: {
         responseModalities: ['TEXT', 'IMAGE'],
