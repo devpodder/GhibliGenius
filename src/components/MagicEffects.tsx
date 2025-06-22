@@ -11,6 +11,7 @@ interface Sparkle {
 
 const MagicEffects = () => {
   const [motes, setMotes] = useState<any[]>([]);
+  const [petals, setPetals] = useState<any[]>([]);
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
   const sparkleId = useRef(0);
 
@@ -31,6 +32,24 @@ const MagicEffects = () => {
       };
     });
     setMotes(newMotes);
+
+    // Generate ambient petals
+    const newPetals = Array.from({ length: 15 }).map((_, i) => {
+      const size = Math.random() * 8 + 5; // 5px to 13px
+      return {
+        id: i,
+        style: {
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${Math.random() * 100}vw`,
+          top: `${Math.random() * 100}vh`,
+          transform: `rotate(${Math.random() * 360}deg)`,
+          animationDuration: `${Math.random() * 20 + 15}s`, // 15-35s (slower)
+          animationDelay: `${Math.random() * 20}s`,
+        },
+      };
+    });
+    setPetals(newPetals);
   }, []);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -75,6 +94,9 @@ const MagicEffects = () => {
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
         {motes.map((mote) => (
           <div key={mote.id} className="mote" style={mote.style} />
+        ))}
+        {petals.map((petal) => (
+          <div key={petal.id} className="petal" style={petal.style} />
         ))}
       </div>
       {sparkles.map((sparkle) => (
