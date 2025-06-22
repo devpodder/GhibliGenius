@@ -1,11 +1,43 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import NextImage from "next/image";
 import TextToArtGenerator from "@/components/TextToArtGenerator";
 import ImageToArtTransformer from "@/components/ImageToArtTransformer";
+import MagicEffects from "@/components/MagicEffects";
 import { Sparkles, Edit3, Image as ImageIconLucide, PencilLine, ImageUp, Wand2, Heart, Camera } from "lucide-react";
+
+// A small component for the motes around the "Dev's Magic" lozenge
+const DevMagicMotes = () => {
+  const [motes, setMotes] = useState<any[]>([]);
+  useEffect(() => {
+    const newMotes = Array.from({ length: 7 }).map((_, i) => {
+      const size = Math.random() * 3 + 2; // 2px to 5px
+      return {
+        id: i,
+        style: {
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDuration: `${Math.random() * 8 + 6}s`, // 6-14s
+          animationDelay: `${Math.random() * 8}s`,
+        },
+      };
+    });
+    setMotes(newMotes);
+  }, []);
+
+  return (
+    <div className="dev-magic-motes">
+      {motes.map(mote => (
+        <div key={mote.id} className="mote" style={mote.style} />
+      ))}
+    </div>
+  );
+};
+
 
 export default function HomePage() {
   const [isImageUpload, setIsImageUpload] = useState(false);
@@ -22,11 +54,15 @@ export default function HomePage() {
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-background selection:bg-primary/30 px-4 sm:px-6 lg:px-8">
+      <MagicEffects />
       {/* Hero Section */}
       <header className="w-full max-w-5xl text-center py-16 sm:py-24 group">
-        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2 rounded-full mb-6 text-sm shadow-sm border border-primary/20">
-          <Sparkles className="h-5 w-5" />
-          Dev's Magic
+        <div className="relative inline-flex">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-medium px-4 py-2 rounded-full mb-6 text-sm shadow-sm border border-primary/20 z-10">
+            <Sparkles className="h-5 w-5" />
+            Dev's Magic
+          </div>
+          <DevMagicMotes />
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground transition-all duration-300 ease-out group-hover:text-primary group-hover:drop-shadow-[0_0_8px_hsl(var(--primary))]">
           Transform Your World
