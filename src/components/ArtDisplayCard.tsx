@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"; 
 import { Download, Loader2, AlertTriangle, ImageOff } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ArtDisplayCardProps {
   title: string;
@@ -67,25 +68,33 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
     }
   }, [imageUrl]);
 
+  const showLoader = isLoading || isImageLoading;
+
   return (
     <Card className="w-full shadow-none border-none bg-transparent p-0 flex flex-col flex-grow">
       <CardHeader className="p-0 mb-3">
-        <CardTitle className="text-lg font-semibold text-foreground text-left">{title}</CardTitle>
+        {showLoader ? (
+          <Skeleton className="h-7 w-3/4 max-w-sm rounded-md" />
+        ) : (
+          <CardTitle className="text-lg font-semibold text-foreground text-left">{title}</CardTitle>
+        )}
       </CardHeader>
-      <CardContent className="flex flex-col justify-center items-center min-h-[250px] p-0 sm:p-4 flex-grow"> {/* Removed background and border, adjusted padding */}
-        {(isLoading || isImageLoading) && (
-          <div className="flex flex-col items-center text-muted-foreground flex-grow justify-center">
-            <Loader2 className="h-10 w-10 animate-spin text-primary mb-2" />
-            <p>{isLoading ? 'Generating your masterpiece...' : 'Loading image...'}</p>
+      <CardContent className="flex flex-col justify-center items-center min-h-[250px] p-0 sm:p-4 flex-grow">
+        {showLoader && (
+          <div className="w-full h-full flex flex-col items-center justify-center flex-grow space-y-3">
+              <Skeleton className="w-full rounded-lg aspect-[3/2] max-h-[450px]" />
+              <p className="text-sm text-muted-foreground">
+                {isLoading ? 'Generating your masterpiece...' : 'Loading image...'}
+              </p>
           </div>
         )}
-        {error && !isLoading && !isImageLoading && (
+        {error && !showLoader && (
           <div className="flex flex-col items-center text-destructive flex-grow justify-center">
             <AlertTriangle className="h-10 w-10 mb-2" />
             <p className="text-center">Error: {error}</p>
           </div>
         )}
-        {!isLoading && !isImageLoading && !error && imageUrl && imageDimensions && (
+        {!showLoader && !error && imageUrl && imageDimensions && (
           <div className="w-full flex justify-center items-center flex-grow">
             <NextImage
               src={imageUrl}
@@ -99,14 +108,14 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
             />
           </div>
         )}
-        {!isLoading && !isImageLoading && !error && !imageUrl && showPlaceholder && (
-           <div className="flex flex-col items-center text-muted-foreground text-center w-full justify-center flex-grow"> {/* Removed specific background and border from placeholder */}
+        {!showLoader && !error && !imageUrl && showPlaceholder && (
+           <div className="flex flex-col items-center text-muted-foreground text-center w-full justify-center flex-grow">
             <ImageOff className="h-12 w-12 mb-3 text-gray-400" />
             <p>{placeholderText}</p>
           </div>
         )}
       </CardContent>
-      {imageUrl && !isLoading && !isImageLoading && !error && onDownload && (
+      {imageUrl && !showLoader && !error && onDownload && (
         <CardFooter className="flex justify-start p-0 pt-4 mt-auto">
           <Button onClick={onDownload} className="bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 ease-out hover:-translate-y-px hover:shadow-glow-accent rounded-lg text-sm py-2.5 px-5">
             <Download className="mr-2 h-4 w-4" />
