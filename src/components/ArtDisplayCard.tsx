@@ -4,7 +4,7 @@
 import NextImage from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"; 
-import { Download, Loader2, AlertTriangle, ImageOff } from "lucide-react";
+import { Download, Loader2, Frown, Feather } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -25,7 +25,7 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
   error,
   onDownload,
   showPlaceholder = true,
-  placeholderText = "Your art will appear here"
+  placeholderText = "Your magical art will appear here."
 }) => {
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
@@ -89,9 +89,10 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
           </div>
         )}
         {error && !showLoader && (
-          <div className="flex flex-col items-center text-destructive flex-grow justify-center">
-            <AlertTriangle className="h-10 w-10 mb-2" />
-            <p className="text-center">Error: {error}</p>
+           <div className="flex flex-col items-center text-center flex-grow justify-center p-4">
+              <Frown className="h-10 w-10 mb-3 text-accent" />
+              <p className="font-semibold text-foreground">Oh no, a little snag!</p>
+              <p className="text-sm text-muted-foreground mt-1">{error}</p>
           </div>
         )}
         {!showLoader && !error && imageUrl && imageDimensions && (
@@ -109,8 +110,8 @@ const ArtDisplayCard: React.FC<ArtDisplayCardProps> = ({
           </div>
         )}
         {!showLoader && !error && !imageUrl && showPlaceholder && (
-           <div className="flex flex-col items-center text-muted-foreground text-center w-full justify-center flex-grow">
-            <ImageOff className="h-12 w-12 mb-3 text-gray-400" />
+           <div className="flex flex-col items-center text-muted-foreground text-center w-full justify-center flex-grow p-4">
+            <Feather className="h-12 w-12 mb-4 opacity-70" />
             <p>{placeholderText}</p>
           </div>
         )}
